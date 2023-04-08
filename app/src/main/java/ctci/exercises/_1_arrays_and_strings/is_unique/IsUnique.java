@@ -5,13 +5,14 @@ import java.util.Arrays;
 public class IsUnique {
     /*
      * For simplicity, we consider only strings of lowercase english letters,
-     * if there were more characters in set, we can use either a hashmap or a larger array
+     * if there were more characters in set, we can use either a hashmap or a sufficiently large array
      */
     public boolean isUnique(String str) {
-        int[] frequencies = new int['z'-'a'+1];
+        int bits = 0;
         for (char c: str.toCharArray()) {
-            if (frequencies[c-'a'] > 0) return false;
-            frequencies[c-'a']++;
+            int cBit = 1 << c-'a';
+            if ((cBit & bits) == 1) return false;
+            bits |= cBit;
         }
         return true;
     }
