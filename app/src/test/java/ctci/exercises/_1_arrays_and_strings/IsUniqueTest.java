@@ -17,6 +17,12 @@ public class IsUniqueTest {
         assertSame(expected, new IsUnique().isUnique(str));
     }
 
+    @ParameterizedTest
+    @MethodSource("provideIsUnique")
+    public void testIsUnique2(boolean expected, String str) {
+        assertSame(expected, new IsUnique().isUnique2(str));
+    }
+
     private static Stream<Arguments> provideIsUnique() {
         return Stream.of(
             Arguments.of(true, ""),
